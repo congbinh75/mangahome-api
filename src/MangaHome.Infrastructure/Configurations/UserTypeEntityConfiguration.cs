@@ -1,4 +1,4 @@
-using MangaHome.Core.Common;
+using MangaHome.Core.Values;
 using MangaHome.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -11,42 +11,34 @@ public class UserEntityTypeConfiguration : IEntityTypeConfiguration<User>
     {
         builder.HasKey(x => x.Id);
 
-        builder
-            .HasIndex(b => new { b.Username, b.Email })
+        builder.HasIndex(b => new { b.Username, b.Email })
             .IsUnique();
 
-        builder
-            .Property(x => x.Id)
+        builder.Property(x => x.Id)
             .IsRequired();
 
-        builder
-            .Property(x => x.Username)
+        builder.Property(x => x.Username)
             .HasMaxLength(Constants.UsernameMaxLength)
             .IsRequired();
         
-        builder
-            .Property(x => x.Email)
+        builder.Property(x => x.Email)
             .IsRequired();
         
-        builder
-            .Property(x => x.Role)
+        builder.Property(x => x.Role)
+            .HasConversion<string>()
             .IsRequired();
 
-        builder
-            .Property(x => x.Password)
+        builder.Property(x => x.Password)
             .IsRequired();
 
-        builder
-            .Property(x => x.Salt)
+        builder.Property(x => x.Salt)
             .IsRequired();
         
-        builder
-            .Property(x => x.IsBanned)
+        builder.Property(x => x.IsBanned)
             .IsRequired()
             .HasDefaultValue(false);
         
-        builder
-            .Property(x => x.IsEmailConfirmed)
+        builder.Property(x => x.IsEmailConfirmed)
             .IsRequired()
             .HasDefaultValue(false);
     }

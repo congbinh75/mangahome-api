@@ -1,8 +1,8 @@
 using AutoMapper;
 using MangaHome.Api.Common;
-using MangaHome.Api.Models.Dtos;
+using MangaHome.Api.Models.ViewModels;
 using MangaHome.Api.Models.Requests;
-using MangaHome.Core.Common;
+using MangaHome.Core.Values;
 using MangaHome.Core.Models;
 using MangaHome.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +29,7 @@ public class UserService : IUserService
         _passwordHashingService = passwordHashingService;
     }
 
-    public async Task<Result<UserDto?, List<Error>?>> GetUserByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<Result<UserViewModel?, List<Error>?>> GetUserByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         var key = $"user-{id}";
         var cachedUser = await _distributedCache.GetStringAsync(key, cancellationToken);
@@ -48,13 +48,13 @@ public class UserService : IUserService
                 };
             }
             await _distributedCache.SetStringAsync(key, JsonSerializer.Serialize(user), cancellationToken);
-            return _mapper.Map<UserDto>(user);
+            return _mapper.Map<UserViewModel>(user);
         }
         user = JsonSerializer.Deserialize<User>(cachedUser);
-        return _mapper.Map<UserDto>(user);
+        return _mapper.Map<UserViewModel>(user);
     }
 
-    public async Task<Result<UserDto?, List<Error>?>> RegisterUserAsync(RegisterUserRequest request, CancellationToken cancellationToken)
+    public async Task<Result<UserViewModel?, List<Error>?>> RegisterUserAsync(RegisterUserRequest request, CancellationToken cancellationToken)
     {
         var errors = new List<Error>();
 
@@ -97,6 +97,6 @@ public class UserService : IUserService
         await _dbContext.Users.AddAsync(user, cancellationToken);
         await _dbContext.SaveChangesAsync(cancellationToken);
 
-        return _mapper.Map<UserDto>(user);
+        return _mapper.Map<UserViewModel>(user);
     }
 }

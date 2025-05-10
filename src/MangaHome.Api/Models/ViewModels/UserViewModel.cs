@@ -1,6 +1,6 @@
-namespace MangaHome.Api.Models.Dtos;
+namespace MangaHome.Api.Models.ViewModels;
 
-public class UserDto
+public class UserViewModel
 {
     public string? Id { get; set; }
     public string? Username { get; set; }

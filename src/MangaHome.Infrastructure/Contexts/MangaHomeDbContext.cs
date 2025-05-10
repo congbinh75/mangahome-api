@@ -3,7 +3,6 @@ using MangaHome.Core.Abstractions;
 using MangaHome.Infrastructure.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.VisualBasic;
 
 namespace MangaHome.Infrastructure.Contexts;
 

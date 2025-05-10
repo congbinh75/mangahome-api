@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MangaHome.Core", "src\Manga
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MangaHome.Infrastructure", "src\MangaHome.Infrastructure\MangaHome.Infrastructure.csproj", "{C60C01E3-E114-4DCC-9D71-FCD2F554DF96}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{030A1279-FC76-4423-8747-2A520FBC8EC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MangaHome.Tests", "tests\MangaHome.Tests\MangaHome.Tests.csproj", "{B72729B7-E53E-4CB8-B888-90042D7F2669}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,10 @@ Global
 		{C60C01E3-E114-4DCC-9D71-FCD2F554DF96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C60C01E3-E114-4DCC-9D71-FCD2F554DF96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C60C01E3-E114-4DCC-9D71-FCD2F554DF96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B72729B7-E53E-4CB8-B888-90042D7F2669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B72729B7-E53E-4CB8-B888-90042D7F2669}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B72729B7-E53E-4CB8-B888-90042D7F2669}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B72729B7-E53E-4CB8-B888-90042D7F2669}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,6 +45,7 @@ Global
 		{19EE76F6-48D0-47E8-A431-34C6E34029D0} = {61571259-D6F9-4345-BDB4-21971FEBB507}
 		{143538FA-DE22-4C79-962F-0884D5F9500E} = {61571259-D6F9-4345-BDB4-21971FEBB507}
 		{C60C01E3-E114-4DCC-9D71-FCD2F554DF96} = {61571259-D6F9-4345-BDB4-21971FEBB507}
+		{B72729B7-E53E-4CB8-B888-90042D7F2669} = {030A1279-FC76-4423-8747-2A520FBC8EC6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0226DF58-6FEB-4FC0-9A9E-C65289782BE5}

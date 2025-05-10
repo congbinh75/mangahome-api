@@ -1,18 +1,15 @@
 using AutoMapper;
 using FluentValidation.Results;
-using MangaHome.Api.Models.Dtos;
-using MangaHome.Core.Models;
+using MangaHome.Api.Common;
 
-namespace MangaHome.Api.Common;
+namespace MangaHome.Api.MappingProfiles;
 
-public class AutoMapperProfile : Profile
+public class CommonMappingProfile : Profile
 {
-    public AutoMapperProfile()
+    public CommonMappingProfile()
     {
         CreateMap<ValidationFailure, Error>()
             .ForMember(err => err.Message, act => act.MapFrom(src => src.ErrorMessage))
             .ForMember(err => err.Type, act => act.MapFrom(src => ErrorType.Validation.ToString().ToLower()));
-
-        CreateMap<User, UserDto>();
     }
 }

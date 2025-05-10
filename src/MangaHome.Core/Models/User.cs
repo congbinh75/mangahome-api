@@ -1,4 +1,4 @@
-using MangaHome.Core.Common;
+using MangaHome.Core.Values;
 using System.Text.Json.Serialization;
 
 namespace MangaHome.Core.Models;
@@ -26,9 +26,7 @@ public class User : BaseEntity
         Role role,
         string password,
         byte[] salt,
-        string? profilePictureUrl,
-        bool isBanned,
-        bool isEmailConfirmed)
+        string? profilePictureUrl)
     {
         Username = username;
         Email = email;
@@ -36,8 +34,6 @@ public class User : BaseEntity
         Password = password;
         Salt = salt;
         ProfilePictureUrl = profilePictureUrl;
-        IsBanned = isBanned;
-        IsEmailConfirmed = isEmailConfirmed;
     }
 
     public User(

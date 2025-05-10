@@ -1,7 +1,7 @@
 using FluentValidation;
 using MangaHome.Api.Common;
 using MangaHome.Api.Models.Requests;
-using MangaHome.Core.Common;
+using MangaHome.Core.Values;
 
 namespace MangaHome.Api.Validators;
 

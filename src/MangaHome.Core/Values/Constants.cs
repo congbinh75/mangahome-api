@@ -1,4 +1,4 @@
-namespace MangaHome.Core.Common;
+namespace MangaHome.Core.Values;
 
 public static class Constants
 {
