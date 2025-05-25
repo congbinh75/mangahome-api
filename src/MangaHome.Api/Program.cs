@@ -6,6 +6,8 @@ using MangaHome.Core.Abstractions;
 using MangaHome.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using Serilog.Events;
+using Serilog.Formatting.Compact;
 using System.Net;
 using System.Text.Json;
 
@@ -36,7 +38,19 @@ builder.Services.AddStackExchangeRedisCache(options =>
 });
 
 builder.Host.UseSerilog((context, configuration) =>
-    configuration.ReadFrom.Configuration(context.Configuration));
+{
+    configuration
+        .MinimumLevel.Information()
+        .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+        .MinimumLevel.Override("System", LogEventLevel.Warning)
+        .WriteTo.Console()
+        .WriteTo.File(
+            formatter: new CompactJsonFormatter(),
+            path: "/logs/.log",
+            rollingInterval: RollingInterval.Day,
+            rollOnFileSizeLimit: true
+        );
+});
 
 var app = builder.Build();
 
@@ -61,11 +75,11 @@ app.UseExceptionHandler(errorApp =>
         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
         context.Response.ContentType = "application/json";
 
-        var responseObject = new Response<object> 
+        var responseObject = new Response<object>
         {
             Success = false,
             Errors = [
-                new Error 
+                new Error
                 {
                     Type = ErrorType.Error.ToString(),
                     Message = Messages.ERR_UNEXPECTED_ERROR,

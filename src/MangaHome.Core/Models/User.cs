@@ -1,5 +1,4 @@
 using MangaHome.Core.Values;
-using System.Text.Json.Serialization;
 
 namespace MangaHome.Core.Models;
 
@@ -19,22 +18,7 @@ public class User : BaseEntity
     public bool IsEmailConfirmed { get; set; } = false;
     public string? EmailConfirmationToken { get; private set; }
 
-    [JsonConstructor]
-    private User(
-        string username,
-        string email,
-        Role role,
-        string password,
-        byte[] salt,
-        string? profilePictureUrl)
-    {
-        Username = username;
-        Email = email;
-        Role = role;
-        Password = password;
-        Salt = salt;
-        ProfilePictureUrl = profilePictureUrl;
-    }
+    internal User() { }
 
     public User(
         string username,
