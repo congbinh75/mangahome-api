@@ -9,7 +9,6 @@ public class CommonMappingProfile : Profile
     public CommonMappingProfile()
     {
         CreateMap<ValidationFailure, Error>()
-            .ForMember(err => err.Message, act => act.MapFrom(src => src.ErrorMessage))
-            .ForMember(err => err.Type, act => act.MapFrom(src => ErrorType.Validation.ToString().ToLower()));
+            .ForMember(err => err.Message, act => act.MapFrom(src => src.ErrorMessage));
     }
 }

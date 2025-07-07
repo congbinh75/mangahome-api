@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MangaHome.Api.Controllers;
 
-[Route("api/user")]
+[Route("api/users")]
 public class UserController : ControllerBase
 {
     private readonly IMapper _mapper;
@@ -30,22 +30,12 @@ public class UserController : ControllerBase
         CancellationToken cancellationToken
     )
     {
-        var result = await _userService.GetUserByIdAsync(id, cancellationToken);
-        if (result.Success)
+        var user = await _userService.GetUserByIdAsync(id, cancellationToken);
+
+        return Ok(new Response<UserViewModel>
         {
-            return StatusCode(200, new Response<UserViewModel>
-            {
-                Data = result.Value,
-            });
-        }
-        else
-        {
-            return BadRequest(new Response<UserViewModel>
-            {
-                Success = false,
-                Errors = result.Errors,
-            });
-        }
+            Data = _mapper.Map<UserViewModel>(user),
+        });
     }
 
     [HttpPost]
@@ -65,21 +55,11 @@ public class UserController : ControllerBase
             });
         }
 
-        var result = await _userService.RegisterUserAsync(request, cancellationToken);
-        if (result.Success)
+        var user = await _userService.RegisterUserAsync(request, cancellationToken);
+
+        return StatusCode(201, new Response<string>
         {
-            return StatusCode(201, new Response<string>
-            {
-                Data = result.Value!.Id,
-            });
-        }
-        else
-        {
-            return BadRequest(new Response<UserViewModel>
-            {
-                Success = false,
-                Errors = result.Errors,
-            });
-        }
+            Data = user.Id.ToString(),
+        });
     }
 }

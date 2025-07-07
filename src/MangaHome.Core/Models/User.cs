@@ -11,13 +11,6 @@ public class User : BaseEntity
     public string? Password { get; private set; }
     public byte[]? Salt { get; private set; }
 
-    public string? ProfilePictureUrl { get; private set; }
-
-    public bool IsBanned { get; set; } = false;
-
-    public bool IsEmailConfirmed { get; set; } = false;
-    public string? EmailConfirmationToken { get; private set; }
-
     internal User() { }
 
     public User(
@@ -33,43 +26,5 @@ public class User : BaseEntity
         Role = role;
         Password = password;
         Salt = salt;
-    }
-
-    public void SetPassword(string password, byte[] salt)
-    {
-        Password = password;
-        Salt = salt;
-    }
-
-    public void SetProfilePictureUrl(string profilePictureUrl)
-    {
-        ProfilePictureUrl = profilePictureUrl;
-    }
-
-    public void BanUser()
-    {
-        IsBanned = true;
-    }
-
-    public void UnbanUser()
-    {
-        IsBanned = false;
-    }
-
-    public void SetEmailConfirmationToken(string token)
-    {
-        EmailConfirmationToken = token;
-    }
-
-    public void ConfirmEmail(string token)
-    {
-        if (EmailConfirmationToken == token)
-        {
-            IsEmailConfirmed = true;
-        }
-        else
-        {
-            IsEmailConfirmed = false;
-        }
     }
 }

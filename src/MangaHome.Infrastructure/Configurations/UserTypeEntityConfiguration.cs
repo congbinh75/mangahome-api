@@ -33,13 +33,5 @@ public class UserEntityTypeConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(x => x.Salt)
             .IsRequired();
-        
-        builder.Property(x => x.IsBanned)
-            .IsRequired()
-            .HasDefaultValue(false);
-        
-        builder.Property(x => x.IsEmailConfirmed)
-            .IsRequired()
-            .HasDefaultValue(false);
     }
 }

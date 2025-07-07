@@ -1,26 +1,21 @@
 using MangaHome.Api.Common;
-using MangaHome.Api.Models.Responses;
 using MangaHome.Api.Services;
 using MangaHome.Api.Services.Implementations;
-using MangaHome.Core.Abstractions;
 using MangaHome.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Events;
 using Serilog.Formatting.Compact;
-using System.Net;
-using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IUserService, UserService>();
 
-builder.Services.AddSingleton<IPasswordHashingService, PasswordHashingService>();
-builder.Services.AddSingleton<IDateTimeService, DateTimeService>();
-builder.Services.AddSingleton<IRequestInfoService, RequestInfoService>();
+builder.Services.AddSingleton<IHttpRequestInfoService, HttpRequestInfoService>();
 
 builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddExceptionHandler<ExceptionHandler>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -68,28 +63,6 @@ app.UseStaticFiles();
 
 app.MapControllers();
 
-app.UseExceptionHandler(errorApp =>
-{
-    errorApp.Run(async context =>
-    {
-        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-        context.Response.ContentType = "application/json";
-
-        var responseObject = new Response<object>
-        {
-            Success = false,
-            Errors = [
-                new Error
-                {
-                    Type = ErrorType.Error.ToString(),
-                    Message = Messages.ERR_UNEXPECTED_ERROR,
-                }
-            ]
-        };
-        var jsonResponse = JsonSerializer.Serialize(responseObject);
-
-        await context.Response.WriteAsync(jsonResponse);
-    });
-});
+app.UseExceptionHandler();
 
 await app.RunAsync();
