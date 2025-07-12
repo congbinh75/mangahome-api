@@ -4,9 +4,9 @@ using MangaHome.Api.Common;
 
 namespace MangaHome.Api.MappingProfiles;
 
-public class CommonMappingProfile : Profile
+public class ValidationErrorMappingProfile : Profile
 {
-    public CommonMappingProfile()
+    public ValidationErrorMappingProfile()
     {
         CreateMap<ValidationFailure, Error>()
             .ForMember(err => err.Message, act => act.MapFrom(src => src.ErrorMessage));

@@ -5,9 +5,9 @@ using System.Text.Json;
 
 namespace MangaHome.Api.Common;
 
-public class ExceptionHandler : IExceptionHandler
+public class GlobalExceptionHandler : IExceptionHandler
 {
-    public ExceptionHandler()
+    public GlobalExceptionHandler()
     {
 
     }

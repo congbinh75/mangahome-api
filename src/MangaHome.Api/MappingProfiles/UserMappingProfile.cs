@@ -8,6 +8,7 @@ public class UserMappingProfile : Profile
 {
     public UserMappingProfile()
     {
-        CreateMap<User, UserViewModel>();
+        CreateMap<User, UserViewModel>()
+            .ForMember(dest => dest.Role, act => act.MapFrom(src => src.Role.ToString()));
     }
 }

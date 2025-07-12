@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MangaHome.Api.Controllers;
 
-[Route("api/users")]
+[Route("api/user")]
 public class UserController : ControllerBase
 {
     private readonly IMapper _mapper;
@@ -50,7 +50,6 @@ public class UserController : ControllerBase
         {
             return BadRequest(new Response<UserViewModel>
             {
-                Success = false,
                 Errors = _mapper.Map<List<Error>>(validationResult.Errors)
             });
         }

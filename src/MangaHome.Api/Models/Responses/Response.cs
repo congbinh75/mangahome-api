@@ -5,9 +5,6 @@ namespace MangaHome.Api.Models.Responses;
 
 public record Response<T>
 {
-    [JsonPropertyName("success")]
-    public bool Success { get; set; } = true;
-
     [JsonPropertyName("data")]
     public T? Data { get; set; }
 
