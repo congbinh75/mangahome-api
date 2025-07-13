@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MangaHome.Infrastructure.Migrations
 {
     [DbContext(typeof(MangaHomeDbContext))]
-    [Migration("20250710161723_AddUsersTable")]
+    [Migration("20250713042233_AddUsersTable")]
     partial class AddUsersTable
     {
         /// <inheritdoc />
@@ -71,8 +71,8 @@ namespace MangaHome.Infrastructure.Migrations
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)")
                         .HasColumnName("username");
 
                     b.HasKey("Id")

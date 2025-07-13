@@ -25,7 +25,7 @@ END $EF$;
 
 CREATE TABLE mangahome.users (
     id uuid NOT NULL,
-    username character varying(20) NOT NULL,
+    username character varying(32) NOT NULL,
     email text NOT NULL,
     role text NOT NULL,
     password text NOT NULL,

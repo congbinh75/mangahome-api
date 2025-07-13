@@ -20,7 +20,7 @@ namespace MangaHome.Infrastructure.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
-                    username = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    username = table.Column<string>(type: "character varying(32)", maxLength: 32, nullable: false),
                     email = table.Column<string>(type: "text", nullable: false),
                     role = table.Column<string>(type: "text", nullable: false),
                     password = table.Column<string>(type: "text", nullable: false),
