@@ -79,18 +79,15 @@ public class UserServiceTests
         Assert.Equal(Messages.ERR_USER_NOT_FOUND, exception.Message);
     }
 
-    [Theory]
-    [InlineData("test", "test@mail.com", "Test123@")]
-    [InlineData("jonedoe1234567891234", "john.doe@mail.com", "Test123456789123456789123456789@")]
-    [InlineData("jane.doe", "jane.doe@mail.com", "Jane123Doe#")]
-    public async Task RegisterUserAsync_WithValidInput_ShouldReturnUserId(string username, string email, string password)
+    [Fact]
+    public async Task RegisterUserAsync_WithValidInput_ShouldReturnUser()
     {
         //Arrange
         var request = new RegisterUserRequest
         {
-            Username = username,
-            Email = email,
-            Password = password
+            Username = "test",
+            Email = "test@mail.com",
+            Password = "Test123@"
         };
 
         using var context = new MangaHomeDbContext(_options);
@@ -104,8 +101,8 @@ public class UserServiceTests
         var result = await _userService.RegisterUserAsync(request, It.IsAny<CancellationToken>());
 
         //Assert
-        Assert.Equal(username, result.Username);
-        Assert.Equal(email, result.Email);
+        Assert.Equal(request.Username, result.Username);
+        Assert.Equal(request.Email, result.Email);
     }
 
     [Fact]

@@ -12,7 +12,7 @@ public class RegisterUserValidator : AbstractValidator<RegisterUserRequest>
         RuleFor(v => v.Username)
             .Length(Constants.UsernameMinLength, Constants.UsernameMaxLength)
                 .WithMessage(Messages.VAL_USERNAME_LENGTH_NOT_VALID)
-            .Matches(Regex.AlphabetAndNumber)
+            .Matches(Regex.Username)
                 .WithMessage(Messages.VAL_USERNAME_FORMAT_NOT_VALID)
             .NotEmpty();
 
